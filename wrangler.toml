@@ -1,0 +1,12 @@
+name = "invitacion-andrew"
+compatibility_date = "2024-05-30"
+
+# Esta configuración utiliza la característica de Assets nativa de Cloudflare Workers.
+# Esto despliega directamente el contenido generado en 'dist' junto al Worker.
+# Es ideal para Aplicaciones de una sola página (SPA) hechas en React+Vite.
+[assets]
+directory = "dist"
+
+# Si en el futuro necesitas backend/APIs en el Worker, puedes descomentar la siguiente línea
+# y crear un archivo "src/worker.ts" con la lógica del Worker.
+# main = "src/worker.ts"

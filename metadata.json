@@ -1,0 +1,6 @@
+{
+  "name": "Mi Primera Vuelta al Sol",
+  "description": "Invitación digital infantil con temática de primavera",
+  "requestFramePermissions": [],
+  "majorCapabilities": ["MAJOR_CAPABILITY_SERVER_SIDE_GEMINI_API"]
+}

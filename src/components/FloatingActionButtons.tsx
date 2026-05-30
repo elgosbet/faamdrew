@@ -1,4 +1,4 @@
-import { MessageCircle, CheckCircle, X } from 'lucide-react';
+import { MessageCircle, CheckCircle, X, CalendarPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import { config } from '../config';
@@ -9,6 +9,15 @@ export function FloatingActionButtons() {
   const openWhatsApp = (phone: string, name: string) => {
     const text = encodeURIComponent(`¡Hola ${name}! Estaremos felices de acompañarlos en la primera vuelta al sol. 🌿`);
     window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+  };
+
+  const addToCalendar = () => {
+    const title = encodeURIComponent('Primer Añito de Andrew');
+    const details = encodeURIComponent('Te esperamos para celebrar la primera vuelta al sol de nuestro príncipe Andrew.');
+    const location = encodeURIComponent('Por confirmar');
+    const dates = '20260614T160000/20260614T200000'; // 14 de Junio de 16:00 a 20:00 (Hora local)
+    const url = `https://calendar.google.com/calendar/render?action=TEMPLATE&text=${title}&dates=${dates}&details=${details}&location=${location}`;
+    window.open(url, '_blank');
   };
 
   const toggle = () => setIsOpen(!isOpen);
@@ -58,6 +67,18 @@ export function FloatingActionButtons() {
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
               <span className="font-semibold text-sm relative z-10 pr-1 md:pr-0">Confirmar</span>
               <CheckCircle className="w-5 h-5 md:w-5 md:h-5 relative z-10" />
+            </motion.button>
+
+            <motion.button
+              whileHover={{ scale: 1.05 }}
+              whileTap={{ scale: 0.95 }}
+              onClick={addToCalendar}
+              className="pointer-events-auto bg-gradient-to-r from-[#DB4437] to-[#C1352A] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-[0_10px_25px_rgba(219,68,55,0.4)] flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
+              title="Agregar al Calendario"
+            >
+              <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
+              <span className="font-semibold text-sm relative z-10 pr-1 md:pr-0">Agendar</span>
+              <CalendarPlus className="w-5 h-5 md:w-5 md:h-5 relative z-10" />
             </motion.button>
           </motion.div>
         )}

@@ -1,6 +1,6 @@
 export const config = {
   // Enlace para la lista de regalos
-  regalosUrl: "https://docs.google.com/spreadsheets/d/1K9iwVLDHfc62TbPNAxeC0UBL6aI0uQwWQ9WUrD_C1Wk/edit?usp=sharing",
+  regalosUrl: "https://www.wishbob.com/enosmpbvwi",
   
   // Enlace de Google Forms para confirmar asistencia
   confirmacionUrl: "https://forms.gle/bqtYLHnPYf5giEVA7",

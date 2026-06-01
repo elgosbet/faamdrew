@@ -47,8 +47,11 @@ export function EventInfo() {
                   <MapPin className="w-6 h-6 text-[var(--color-theme-text)] opacity-80" />
                 </div>
               </div>
-              <h3 className="text-[11px] uppercase tracking-[1.5px] mb-3 text-[var(--color-theme-gold)] font-bold">Ubicación</h3>
-              <p className="text-[16px] md:text-[18px] font-semibold text-[var(--color-theme-text)] max-w-md mx-auto leading-relaxed mb-4">
+              <h3 className="text-[11px] uppercase tracking-[1.5px] mb-2 text-[var(--color-theme-gold)] font-bold">Ubicación</h3>
+              <p className="text-[18px] font-semibold text-[var(--color-theme-text)] max-w-md mx-auto mb-2">
+                Av. Campo verde lt9 Lurigancho
+              </p>
+              <p className="text-[14px] md:text-[16px] opacity-80 text-[var(--color-theme-text)] max-w-md mx-auto leading-relaxed mb-6">
                 Nos encantará verte ahí. Toca el botón de abajo para que no te pierdas.
               </p>
               

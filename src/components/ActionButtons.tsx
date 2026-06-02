@@ -1,6 +1,7 @@
 import { Gift, CheckCircle } from 'lucide-react';
 import { motion } from 'motion/react';
 import { config } from '../config';
+import { fireConfetti } from './ConfettiManager';
 
 export function ActionButtons() {
   return (
@@ -9,6 +10,9 @@ export function ActionButtons() {
         href={config.confirmacionUrl}
         target="_blank"
         rel="noopener noreferrer"
+        onClick={(e) => {
+          fireConfetti();
+        }}
         initial={{ opacity: 0, y: 20 }}
         whileInView={{ opacity: 1, y: 0 }}
         viewport={{ once: true }}

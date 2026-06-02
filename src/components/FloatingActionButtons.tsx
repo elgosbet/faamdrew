@@ -2,6 +2,7 @@ import { MessageCircle, CheckCircle, X, CalendarPlus } from 'lucide-react';
 import { motion, AnimatePresence } from 'motion/react';
 import { useState } from 'react';
 import { config } from '../config';
+import { fireConfetti } from './ConfettiManager';
 
 export function FloatingActionButtons() {
   const [isOpen, setIsOpen] = useState(false);
@@ -60,7 +61,10 @@ export function FloatingActionButtons() {
             <motion.button
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
-              onClick={() => window.open(config.confirmacionUrl, '_blank')}
+              onClick={() => {
+                fireConfetti();
+                window.open(config.confirmacionUrl, '_blank');
+              }}
               className="pointer-events-auto bg-gradient-to-r from-[var(--color-theme-accent)] to-[var(--color-theme-accent-light)] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-lg flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
               title="Confirmar Asistencia"
             >

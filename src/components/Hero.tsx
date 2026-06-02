@@ -24,7 +24,7 @@ export function Hero() {
         className="max-w-2xl w-full"
       >
         <TiltCard>
-          <div className="bg-white/60 backdrop-blur-md rounded-[3rem] p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/80 relative overflow-hidden flex flex-col items-center w-full">
+          <div className="bg-white/60 backdrop-blur-md rounded-[2.5rem] sm:rounded-[3rem] p-6 sm:p-8 md:p-12 shadow-[0_20px_50px_rgba(0,0,0,0.05)] border border-white/80 relative overflow-hidden flex flex-col items-center w-full">
             
             {/* Arched text: MI PRIMERA VUELTA AL SOL */}
             <motion.div 
@@ -54,24 +54,38 @@ export function Hero() {
               Andrew cumple
             </motion.p>
 
+            <motion.div
+              initial={{ opacity: 0, scale: 0.5 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5, duration: 0.8, type: "spring" }}
+              style={{ transform: "translateZ(80px)" }}
+              className="mb-2"
+            >
+              <img 
+                src="/imagenes/Foto001.png" 
+                alt="Andrew" 
+                className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover shadow-lg border-4 border-white mx-auto" 
+              />
+            </motion.div>
+
             {/* Large "UNO" with cute sun as O */}
             <motion.div 
               initial={{ opacity: 0, scale: 0.5, y: 50 }}
               animate={{ opacity: 1, scale: 1, y: 0 }}
               transition={{ delay: 0.6, type: "spring", bounce: 0.6, duration: 1.2 }}
               whileHover={{ scale: 1.05 }}
-              className="flex items-center justify-center gap-2 mb-8 cursor-default"
+              className="flex items-center justify-center gap-1 sm:gap-2 mb-6 sm:mb-8 cursor-default"
               style={{ transform: "translateZ(100px)" }}
             >
               <motion.span 
                 whileHover={{ y: -10, rotate: -5, color: 'var(--color-theme-gold)' }}
-                className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
+                className="font-serif text-[80px] sm:text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
               >
                 U
               </motion.span>
               <motion.span 
                 whileHover={{ y: -10, rotate: 5, color: 'var(--color-theme-gold)' }}
-                className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
+                className="font-serif text-[80px] sm:text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
               >
                 N
               </motion.span>
@@ -79,7 +93,7 @@ export function Hero() {
                 whileHover={{ scale: 1.2, rotate: 180 }}
                 transition={{ type: "spring", stiffness: 200 }}
               >
-                <CuteSunSVG className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] -mt-2 animate-[spin_20s_linear_infinite]" />
+                <CuteSunSVG className="w-[80px] h-[80px] sm:w-[100px] sm:h-[100px] md:w-[140px] md:h-[140px] -mt-2 animate-[spin_20s_linear_infinite]" />
               </motion.div>
             </motion.div>
 

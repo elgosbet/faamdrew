@@ -11,6 +11,7 @@ export function Gallery() {
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
   const scrollLeftValue = useRef(0);
+  const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
   const photoFiles = [
     'fot_1.jpg',
@@ -114,18 +115,30 @@ export function Gallery() {
         className="mb-16 w-full max-w-3xl mx-auto"
       >
         <TiltCard>
-          <div 
-            className="w-full aspect-video rounded-[24px] bg-white bg-opacity-70 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.1)] border-[4px] border-white relative cursor-pointer group transition-transform overflow-hidden"
-            onClick={() => window.open(config.videoUrl, '_blank')}
-          >
-            <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-theme-accent-light)] to-[var(--color-theme-mint)] opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
-            <div className="flex flex-col items-center gap-4 relative z-10 p-6 text-center" style={{ transform: "translateZ(50px)" }}>
-              <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
-                <PlayCircle className="w-10 h-10 text-[var(--color-theme-accent)]" />
+          {!isVideoPlaying ? (
+            <div 
+              className="w-full aspect-video rounded-[24px] bg-white bg-opacity-70 flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.1)] border-[4px] border-white relative cursor-pointer group transition-transform overflow-hidden"
+              onClick={() => setIsVideoPlaying(true)}
+            >
+              <div className="absolute inset-0 bg-gradient-to-br from-[var(--color-theme-accent-light)] to-[var(--color-theme-mint)] opacity-40 group-hover:opacity-60 transition-opacity duration-300"></div>
+              <div className="flex flex-col items-center gap-4 relative z-10 p-6 text-center" style={{ transform: "translateZ(50px)" }}>
+                <div className="w-16 h-16 rounded-full bg-white flex items-center justify-center shadow-xl group-hover:scale-110 transition-transform duration-300">
+                  <PlayCircle className="w-10 h-10 text-[var(--color-theme-accent)]" />
+                </div>
+                <span className="text-[var(--color-theme-text)] font-semibold tracking-wide text-lg drop-shadow-sm">Reproducir Video Especial</span>
               </div>
-              <span className="text-[var(--color-theme-text)] font-semibold tracking-wide text-lg drop-shadow-sm">Reproducir Video Especial</span>
             </div>
-          </div>
+          ) : (
+            <div className="w-full aspect-video rounded-[24px] bg-black flex items-center justify-center shadow-[0_20px_40px_rgba(0,0,0,0.1)] border-[4px] border-white relative overflow-hidden">
+              <video 
+                controls 
+                autoPlay
+                playsInline 
+                className="w-full h-full object-contain rounded-[20px]"
+                src="/video/video_1.mp4" 
+              />
+            </div>
+          )}
         </TiltCard>
       </motion.div>
 

@@ -1,11 +1,16 @@
 import { motion, AnimatePresence } from 'motion/react';
-import { Camera, PlayCircle, X } from 'lucide-react';
+import { Camera, PlayCircle, X, ChevronLeft, ChevronRight } from 'lucide-react';
 import { config } from '../config';
 import { TiltCard } from './TiltCard';
-import { useState } from 'react';
+import React, { useState, useRef, useEffect } from 'react';
 
 export function Gallery() {
   const [selectedImage, setSelectedImage] = useState<string | null>(null);
+  const carouselRef = useRef<HTMLDivElement>(null);
+  const [isHovered, setIsHovered] = useState(false);
+  const [isDragging, setIsDragging] = useState(false);
+  const startX = useRef(0);
+  const scrollLeftValue = useRef(0);
 
   const photoFiles = [
     'Foto001.png',
@@ -28,6 +33,61 @@ export function Gallery() {
     url: `/imagenes/${filename}`,
     title: `Recuerdo ${i + 1}`
   }));
+
+  useEffect(() => {
+    if (isHovered) return;
+
+    const interval = setInterval(() => {
+      if (carouselRef.current) {
+        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
+        if (scrollLeft + clientWidth >= scrollWidth - 10) {
+          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
+        } else {
+          carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+        }
+      }
+    }, 3000);
+
+    return () => clearInterval(interval);
+  }, [isHovered]);
+
+  const scrollLeftBtn = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: -300, behavior: 'smooth' });
+    }
+  };
+
+  const scrollRightBtn = () => {
+    if (carouselRef.current) {
+      carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
+    }
+  };
+
+  const handleMouseDown = (e: React.MouseEvent) => {
+    setIsDragging(true);
+    if (carouselRef.current) {
+      startX.current = e.pageX - carouselRef.current.offsetLeft;
+      scrollLeftValue.current = carouselRef.current.scrollLeft;
+    }
+  };
+
+  const handleMouseLeave = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseUp = () => {
+    setIsDragging(false);
+  };
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    if (!isDragging) return;
+    e.preventDefault();
+    if (carouselRef.current) {
+      const x = e.pageX - carouselRef.current.offsetLeft;
+      const walk = (x - startX.current) * 2; // Scroll-fast
+      carouselRef.current.scrollLeft = scrollLeftValue.current - walk;
+    }
+  };
 
   return (
     <section className="relative z-10 py-16 px-6 max-w-6xl mx-auto">
@@ -70,14 +130,42 @@ export function Gallery() {
       </motion.div>
 
       {/* Photos Carousel */}
-      <div className="relative w-full pb-8">
+      <div 
+        className="relative w-full pb-8"
+        onMouseEnter={() => setIsHovered(true)}
+        onMouseLeave={() => setIsHovered(false)}
+        onTouchStart={() => setIsHovered(true)}
+        onTouchEnd={() => setIsHovered(false)}
+      >
         <h3 className="text-xl md:text-2xl font-serif text-[var(--color-theme-text)] mb-6 text-center">Galería de Fotos</h3>
         <p className="text-sm md:text-base text-[var(--color-theme-text)] opacity-70 text-center mb-8">
-          Desliza para ver más o pasa el mouse para ampliar
+          Usa las flechas, desliza para ver más o pasa el mouse para ampliar
         </p>
+
+        {/* Navigation Arrows */}
+        <button 
+          onClick={scrollLeftBtn}
+          className="absolute left-2 top-1/2 -translate-y-1/2 z-40 bg-white/80 p-3 rounded-full shadow-lg text-[var(--color-theme-accent)] hover:bg-white hover:scale-110 transition-all hidden md:flex"
+        >
+          <ChevronLeft className="w-6 h-6" />
+        </button>
+        <button 
+          onClick={scrollRightBtn}
+          className="absolute right-2 top-1/2 -translate-y-1/2 z-40 bg-white/80 p-3 rounded-full shadow-lg text-[var(--color-theme-accent)] hover:bg-white hover:scale-110 transition-all hidden md:flex"
+        >
+          <ChevronRight className="w-6 h-6" />
+        </button>
         
         {/* Carousel Container */}
-        <div className="flex overflow-x-auto gap-6 pb-12 snap-x snap-mandatory hide-scrollbar p-4" style={{ scrollbarWidth: 'none' }}>
+        <div 
+          ref={carouselRef}
+          className={`flex overflow-x-auto gap-6 pb-12 hide-scrollbar p-4 cursor-grab active:cursor-grabbing ${isDragging ? '' : 'snap-x snap-mandatory'}`}
+          style={{ scrollbarWidth: 'none' }}
+          onMouseDown={handleMouseDown}
+          onMouseLeave={handleMouseLeave}
+          onMouseUp={handleMouseUp}
+          onMouseMove={handleMouseMove}
+        >
           {photos.map((photo, i) => (
             <motion.div
               key={photo.id}
@@ -87,8 +175,15 @@ export function Gallery() {
               transition={{ duration: 0.5, delay: i * 0.1 }}
               className="snap-center relative shrink-0"
             >
-              <div 
-                className="w-64 h-80 md:w-72 md:h-96 rounded-2xl md:rounded-[32px] bg-white/50 border-4 border-white shadow-[0_15px_30px_rgba(0,0,0,0.1)] overflow-hidden cursor-pointer group relative z-0 hover:z-20 transition-all duration-300 ease-out"
+              <motion.div 
+                className="w-64 h-80 md:w-72 md:h-96 rounded-2xl md:rounded-[32px] bg-white/50 border-4 border-white shadow-[0_15px_30px_rgba(0,0,0,0.1)] overflow-hidden cursor-pointer group relative z-0"
+                whileHover={{ 
+                  scale: 1.05, 
+                  rotate: i % 2 === 0 ? 3 : -3, 
+                  zIndex: 30,
+                  boxShadow: "0 20px 40px rgba(0,0,0,0.2)"
+                }}
+                whileTap={{ scale: 0.95 }}
                 onClick={() => setSelectedImage(photo.url)}
               >
                 {/* 
@@ -111,7 +206,7 @@ export function Gallery() {
                     }
                   }}
                 />
-              </div>
+              </motion.div>
             </motion.div>
           ))}
         </div>

@@ -58,10 +58,12 @@ export function EventInfo() {
                initial={{ opacity: 0, y: 10 }}
                whileInView={{ opacity: 1, y: 0 }}
                viewport={{ once: true }}
+               whileHover={{ scale: 1.1, y: -5 }}
+               whileTap={{ scale: 0.9 }}
                href="https://maps.app.goo.gl/eVbjtNcxeVNTkAz76?g_st=aw" 
                target="_blank" 
                rel="noopener noreferrer"
-               className="inline-flex items-center justify-center gap-2 bg-[var(--color-theme-gold)] text-white px-8 py-3.5 rounded-full font-serif font-bold shadow-md hover:bg-opacity-90 transition-all hover:scale-105 active:scale-95 text-lg"
+               className="inline-flex items-center justify-center gap-2 bg-[var(--color-theme-gold)] text-white px-8 py-3.5 rounded-full font-serif font-bold shadow-md hover:bg-opacity-90 text-lg"
             >
                <Navigation className="w-5 h-5" fill="currentColor" />
                ubicación

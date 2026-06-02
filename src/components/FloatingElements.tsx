@@ -1,7 +1,7 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
-const ELEMENTS = ['sun', 'cloud', 'star'];
+const ELEMENTS = ['sun', 'cloud', 'star', 'rainbow'];
 
 interface Element {
   id: number;
@@ -15,26 +15,43 @@ interface Element {
 }
 
 const SunIcon = () => (
-  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-12 h-12">
-    <path d="M50 8C50 8 55 18 62 20C69 22 78 18 78 18C78 18 76 28 80 34C84 40 94 40 94 40C94 40 86 48 88 55C90 62 98 68 98 68C98 68 88 72 84 78C80 84 82 94 82 94C82 94 72 88 65 90C58 92 50 100 50 100C50 100 42 92 35 90C28 88 18 94 18 94C18 94 20 84 16 78C12 72 2 68 2 68C2 68 10 62 12 55C14 48 6 40 6 40C6 40 16 40 20 34C24 28 22 18 22 18C22 18 31 22 38 20C45 18 50 8 50 8Z" fill="#F6C153"/>
-    <circle cx="50" cy="50" r="28" fill="#F9A03F"/>
-    <circle cx="40" cy="46" r="4" fill="#6A6865"/>
-    <circle cx="60" cy="46" r="4" fill="#6A6865"/>
-    <path d="M44 56Q50 62 56 56" stroke="#6A6865" strokeWidth="3" strokeLinecap="round"/>
-    <circle cx="33" cy="52" r="5" fill="#E38E55" opacity="0.6"/>
-    <circle cx="67" cy="52" r="5" fill="#E38E55" opacity="0.6"/>
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-16 drop-shadow-md">
+    <path d="M50 5L53.5 15L64 12L64.5 22.5L74.5 23.5L71 33.5L79.5 38L73 46.5L79.5 55L71 59.5L74.5 69.5L64.5 70.5L64 81L53.5 78L50 88L46.5 78L36 81L35.5 70.5L25.5 69.5L29 59.5L20.5 55L27 46.5L20.5 38L29 33.5L25.5 23.5L35.5 22.5L36 12L46.5 15L50 5Z" fill="#F4C773" stroke="#F1AD41" strokeWidth="2" strokeLinejoin="round"/>
+    <circle cx="50" cy="46.5" r="22" fill="#F8BC5C"/>
+    <circle cx="43" cy="44" r="3" fill="#6A6865"/>
+    <circle cx="57" cy="44" r="3" fill="#6A6865"/>
+    <path d="M46 51Q50 55 54 51" stroke="#6A6865" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="37" cy="48" r="4" fill="#E38E55" opacity="0.5"/>
+    <circle cx="63" cy="48" r="4" fill="#E38E55" opacity="0.5"/>
   </svg>
 );
 
 const CloudIcon = () => (
-  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-16 h-10">
-    <path d="M75 50C75 40 65 35 55 40C50 25 30 25 25 40C15 45 15 60 25 65L75 65C85 65 85 55 75 50Z" fill="#D4E1E6"/>
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-20 h-14 drop-shadow-md opacity-80">
+    <path d="M75 50C75 35 65 30 55 35C50 20 30 20 25 35C10 40 10 65 25 70L75 70C90 70 90 55 75 50Z" fill="#C4E0E8" stroke="#A7CFDB" strokeWidth="1"/>
+    <path d="M35 45A5 5 0 0 1 45 45" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+    <path d="M60 40A5 5 0 0 1 70 40" stroke="#fff" strokeWidth="2" strokeLinecap="round" opacity="0.5"/>
+  </svg>
+);
+
+const RainbowIcon = () => (
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-24 h-24 drop-shadow-md">
+    <path d="M10 90 A40 40 0 0 1 90 90" stroke="#E67B65" strokeWidth="6" strokeLinecap="round"/>
+    <path d="M20 90 A30 30 0 0 1 80 90" stroke="#F4C773" strokeWidth="6" strokeLinecap="round"/>
+    <path d="M30 90 A20 20 0 0 1 70 90" stroke="#87C4C9" strokeWidth="6" strokeLinecap="round"/>
+    {/* Tiny clouds at the bottom */}
+    <circle cx="10" cy="90" r="8" fill="#FFF" />
+    <circle cx="20" cy="90" r="10" fill="#FFF" />
+    <circle cx="30" cy="90" r="8" fill="#FFF" />
+    <circle cx="90" cy="90" r="8" fill="#FFF" />
+    <circle cx="80" cy="90" r="10" fill="#FFF" />
+    <circle cx="70" cy="90" r="8" fill="#FFF" />
   </svg>
 );
 
 const StarIcon = () => (
-  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8">
-    <path d="M50 5L62 38L95 38L68 58L78 90L50 70L22 90L32 58L5 38L38 38L50 5Z" fill="#F6C153" stroke="#E38E55" strokeWidth="2" strokeLinejoin="round"/>
+  <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className="w-8 h-8 drop-shadow-sm">
+    <path d="M50 5L62 38L95 38L68 58L78 90L50 70L22 90L32 58L5 38L38 38L50 5Z" fill="#F6C153" stroke="#F1AD41" strokeWidth="1" strokeLinejoin="round"/>
   </svg>
 );
 
@@ -43,17 +60,32 @@ export function FloatingElements() {
 
   useEffect(() => {
     const isMobile = window.innerWidth < 768;
-    const count = isMobile ? 12 : 24;
+    const count = isMobile ? 16 : 28;
+    
+    // Create an array of types, ensuring they are evenly distributed.
+    // For rainbows, we can make them slightly less frequent if desired,
+    // or just ensure they are spaced out by shuffling the assignment.
+    const shuffledIndices = Array.from({ length: count }).map((_, i) => i).sort(() => Math.random() - 0.5);
     
     const newElements = Array.from({ length: count }).map((_, i) => {
+      // 4 columns on mobile, 7 on desktop
+      const cols = isMobile ? 4 : 7;
+      const col = i % cols;
+      const row = Math.floor(i / cols);
+      const rows = Math.ceil(count / cols);
+
       return {
         id: i,
-        type: ELEMENTS[Math.floor(Math.random() * ELEMENTS.length)],
-        x: Math.random() * 100,
-        y: Math.random() * 100,
-        size: Math.random() * 1 + 0.8,
-        duration: Math.random() * 30 + 35,
-        delay: Math.random() * -30, // Negative delay so they start already on screen
+        // Cycle through elements perfectly to guarantee even distribution of types
+        type: ELEMENTS[shuffledIndices[i] % ELEMENTS.length],
+        // Spread x evenly across columns, add some random jitter
+        x: (col * (100 / cols)) + (Math.random() * (100 / cols) * 0.6),
+        // Keep initial 'y' for starting offset jitter
+        y: Math.random() * 20,
+        size: Math.random() * 1.2 + 0.8,
+        duration: Math.random() * 30 + 45,
+        // Distribute delay based on row so they are spaced vertically over time
+        delay: - (row * (60 / rows)) - (Math.random() * (60 / rows)),
         zDepth: Math.random() * 100 - 50, // For 3D parallax effect
       };
     });
@@ -77,8 +109,8 @@ export function FloatingElements() {
           }}
           animate={{ 
             x: `${el.x + (Math.random() * 20 - 10)}vw`,
-            y: `-${20}vh`,
-            rotate: el.type === 'star' ? 180 : Math.random() > 0.5 ? 20 : -20,
+            y: `-${30}vh`,
+            rotate: el.type === 'star' ? 180 : el.type === 'rainbow' ? 5 : Math.random() > 0.5 ? 15 : -15,
           }}
           transition={{
             y: { duration: el.duration, repeat: Infinity, ease: "linear", delay: el.delay },
@@ -86,11 +118,22 @@ export function FloatingElements() {
             rotate: { duration: el.duration * 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }
           }}
         >
-          <div style={{ filter: el.zDepth < 0 ? 'blur(3px)' : 'none' }}>
+          <motion.div 
+            style={{ 
+              filter: el.zDepth < 0 ? 'blur(2px)' : 'none', 
+              cursor: 'grab',
+              transform: `scale(${el.size})` 
+            }}
+            whileHover={{ scale: el.size * 1.15, rotate: 10 }}
+            whileTap={{ scale: el.size * 0.9, rotate: -10, cursor: 'grabbing' }}
+            drag
+            dragConstraints={{ left: -100, right: 100, top: -100, bottom: 100 }}
+          >
             {el.type === 'sun' && <SunIcon />}
             {el.type === 'cloud' && <CloudIcon />}
             {el.type === 'star' && <StarIcon />}
-          </div>
+            {el.type === 'rainbow' && <RainbowIcon />}
+          </motion.div>
         </motion.div>
       ))}
     </div>

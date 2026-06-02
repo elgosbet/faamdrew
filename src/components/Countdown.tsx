@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import { motion } from 'motion/react';
 import { config } from '../config';
 
 interface TimeLeft {
@@ -48,9 +49,13 @@ export function Countdown() {
     <div className="grid grid-cols-4 gap-3 md:gap-4 mt-8">
       {timeBlocks.map((block, index) => (
         <div key={index} className="bg-white/40 backdrop-blur-[10px] border border-white/60 p-4 rounded-[16px] text-center shadow-[0_8px_32px_rgba(255,180,190,0.15)] flex flex-col items-center justify-center">
-          <span className="block text-[28px] md:text-[32px] font-bold font-sans text-[var(--color-theme-accent)]">
+          <motion.span 
+            className="block text-[28px] md:text-[32px] font-bold font-sans text-[var(--color-theme-accent)]"
+            animate={{ scale: [1, 1.1, 1] }}
+            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut", delay: index * 0.2 }}
+          >
             {block.value.toString().padStart(2, '0')}
-          </span>
+          </motion.span>
           <span className="text-[11px] font-bold uppercase tracking-[1.5px] opacity-70 text-[var(--color-theme-text)] mt-1">
             {block.label}
           </span>

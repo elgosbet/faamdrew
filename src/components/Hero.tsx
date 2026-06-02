@@ -4,13 +4,13 @@ import { TiltCard } from './TiltCard';
 
 const CuteSunSVG = ({ className }: { className?: string }) => (
   <svg viewBox="0 0 100 100" fill="none" xmlns="http://www.w3.org/2000/svg" className={className}>
-    <path d="M50 8C50 8 55 18 62 20C69 22 78 18 78 18C78 18 76 28 80 34C84 40 94 40 94 40C94 40 86 48 88 55C90 62 98 68 98 68C98 68 88 72 84 78C80 84 82 94 82 94C82 94 72 88 65 90C58 92 50 100 50 100C50 100 42 92 35 90C28 88 18 94 18 94C18 94 20 84 16 78C12 72 2 68 2 68C2 68 10 62 12 55C14 48 6 40 6 40C6 40 16 40 20 34C24 28 22 18 22 18C22 18 31 22 38 20C45 18 50 8 50 8Z" fill="#F6C153"/>
-    <circle cx="50" cy="50" r="28" fill="#F9A03F"/>
-    <circle cx="40" cy="46" r="4" fill="#6A6865"/>
-    <circle cx="60" cy="46" r="4" fill="#6A6865"/>
-    <path d="M44 56Q50 62 56 56" stroke="#6A6865" strokeWidth="3" strokeLinecap="round"/>
-    <circle cx="33" cy="52" r="5" fill="#E38E55" opacity="0.6"/>
-    <circle cx="67" cy="52" r="5" fill="#E38E55" opacity="0.6"/>
+    <path d="M50 5L53.5 15L64 12L64.5 22.5L74.5 23.5L71 33.5L79.5 38L73 46.5L79.5 55L71 59.5L74.5 69.5L64.5 70.5L64 81L53.5 78L50 88L46.5 78L36 81L35.5 70.5L25.5 69.5L29 59.5L20.5 55L27 46.5L20.5 38L29 33.5L25.5 23.5L35.5 22.5L36 12L46.5 15L50 5Z" fill="#F4C773" stroke="#F1AD41" strokeWidth="2" strokeLinejoin="round"/>
+    <circle cx="50" cy="46.5" r="22" fill="#F8BC5C"/>
+    <circle cx="43" cy="44" r="3" fill="#6A6865"/>
+    <circle cx="57" cy="44" r="3" fill="#6A6865"/>
+    <path d="M46 51Q50 55 54 51" stroke="#6A6865" strokeWidth="2" strokeLinecap="round"/>
+    <circle cx="37" cy="48" r="4" fill="#E38E55" opacity="0.5"/>
+    <circle cx="63" cy="48" r="4" fill="#E38E55" opacity="0.5"/>
   </svg>
 );
 
@@ -56,15 +56,31 @@ export function Hero() {
 
             {/* Large "UNO" with cute sun as O */}
             <motion.div 
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.6, duration: 0.8 }}
-              className="flex items-center justify-center gap-2 mb-8"
+              initial={{ opacity: 0, scale: 0.5, y: 50 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              transition={{ delay: 0.6, type: "spring", bounce: 0.6, duration: 1.2 }}
+              whileHover={{ scale: 1.05 }}
+              className="flex items-center justify-center gap-2 mb-8 cursor-default"
               style={{ transform: "translateZ(100px)" }}
             >
-              <span className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4">U</span>
-              <span className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4">N</span>
-              <CuteSunSVG className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] -mt-2 animate-[spin_20s_linear_infinite]" />
+              <motion.span 
+                whileHover={{ y: -10, rotate: -5, color: 'var(--color-theme-gold)' }}
+                className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
+              >
+                U
+              </motion.span>
+              <motion.span 
+                whileHover={{ y: -10, rotate: 5, color: 'var(--color-theme-gold)' }}
+                className="font-serif text-[100px] md:text-[140px] font-bold text-[var(--color-theme-accent)] leading-none pt-4 transition-colors"
+              >
+                N
+              </motion.span>
+              <motion.div
+                whileHover={{ scale: 1.2, rotate: 180 }}
+                transition={{ type: "spring", stiffness: 200 }}
+              >
+                <CuteSunSVG className="w-[100px] h-[100px] md:w-[140px] md:h-[140px] -mt-2 animate-[spin_20s_linear_infinite]" />
+              </motion.div>
             </motion.div>
 
             <motion.p 

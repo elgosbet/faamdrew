@@ -1,11 +1,19 @@
 import { motion } from 'motion/react';
 import { useEffect, useState } from 'react';
 
-const ELEMENTS = ['🎈', '🍃', '🌿', '☁️', '🪁', '🧸', '✨', '🎈'];
+const SPHERE_COLORS = [
+  { start: '#FFFFFF', end: '#FEF08A' }, // Butter yellow
+  { start: '#FFFFFF', end: '#FED7AA' }, // Peach
+  { start: '#FFFFFF', end: '#FBCFE8' }, // Dusty rose
+  { start: '#FFFFFF', end: '#BBF7D0' }, // Sage green / pastel green
+  { start: '#FFFFFF', end: '#BFDBFE' }, // Pastel blue
+  { start: '#FFFFFF', end: '#E7E5E4' }, // Warm gray/beige
+  { start: '#FFFFFF', end: '#FEF3C7' }, // Cream/ivory
+];
 
 interface Element {
   id: number;
-  icon: string;
+  color: { start: string; end: string };
   x: number;
   y: number;
   size: number;
@@ -22,14 +30,12 @@ export function FloatingElements() {
     const count = isMobile ? 15 : 30;
     
     const newElements = Array.from({ length: count }).map((_, i) => {
-      const isBalloon = i % 3 === 0;
-
       return {
         id: i,
-        icon: isBalloon ? '🎈' : ELEMENTS[Math.floor(Math.random() * ELEMENTS.length)],
+        color: SPHERE_COLORS[Math.floor(Math.random() * SPHERE_COLORS.length)],
         x: Math.random() * 100,
         y: Math.random() * 100,
-        size: Math.random() * 1.5 + 1.2,
+        size: Math.random() * 1.5 + 0.8,
         duration: Math.random() * 20 + 25,
         delay: Math.random() * -20, // Negative delay so they start already on screen
         zDepth: Math.random() * 100 - 50, // For 3D parallax effect
@@ -44,8 +50,8 @@ export function FloatingElements() {
       {elements.map((el) => (
         <motion.div
           key={el.id}
-          className="absolute will-change-transform flex items-center justify-center"
-          style={{ opacity: el.zDepth < 0 ? 0.4 : 0.8 }}
+          className="absolute flex items-center justify-center will-change-transform"
+          style={{ opacity: el.zDepth < 0 ? 0.6 : 0.9 }}
           initial={{ 
             x: `${el.x}vw`, 
             y: `${110 + el.y}vh`,
@@ -56,17 +62,23 @@ export function FloatingElements() {
           animate={{ 
             x: `${el.x + (Math.random() * 30 - 15)}vw`,
             y: `-${20}vh`,
-            rotate: el.icon === '🎈' ? [-5, 5, -5] : 360,
+            rotate: Math.random() > 0.5 ? 45 : -45, // slight rotation for light shifting
           }}
           transition={{
             y: { duration: el.duration, repeat: Infinity, ease: "linear", delay: el.delay },
             x: { duration: el.duration * 0.8, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" },
-            rotate: { duration: el.icon === '🎈' ? 4 : el.duration, repeat: Infinity, ease: "easeInOut" }
+            rotate: { duration: el.duration * 1.5, repeat: Infinity, ease: "easeInOut", repeatType: "mirror" }
           }}
         >
-          <span className="text-3xl md:text-5xl drop-shadow-[0_4px_12px_rgba(0,0,0,0.15)] filter" style={{ filter: el.zDepth < 0 ? 'blur(2px)' : 'none' }}>
-            {el.icon}
-          </span>
+          <div 
+            className="rounded-full shadow-[inset_-4px_-4px_12px_rgba(0,0,0,0.1),_2px_4px_12px_rgba(0,0,0,0.05)] border border-white/50 backdrop-blur-sm"
+            style={{ 
+              width: '40px',
+              height: '40px',
+              background: `radial-gradient(circle at 35% 35%, ${el.color.start} 0%, ${el.color.end} 100%)`,
+              filter: el.zDepth < 0 ? 'blur(3px)' : 'none'
+            }}
+          />
         </motion.div>
       ))}
     </div>

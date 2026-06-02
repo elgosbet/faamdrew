@@ -22,7 +22,7 @@ export function Gallery() {
     'Foto007.jpg',
     'Foto008.jpg',
     'Foto009.jpg',
-    'Foto009(1).jpg',
+    'Foto009_1.jpg',
     'Foto010.jpg',
     'Foto011.jpg',
     'Foto012.jpg'

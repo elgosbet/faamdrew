@@ -12,6 +12,7 @@ import { Footer } from './components/Footer';
 import { FloatingElements } from './components/FloatingElements';
 import { FloatingActionButtons } from './components/FloatingActionButtons';
 import { ConfettiManager } from './components/ConfettiManager';
+import { VideoSection } from './components/VideoSection';
 
 export default function App() {
   return (
@@ -20,6 +21,7 @@ export default function App() {
       <FloatingElements />
       <FloatingActionButtons />
       <Hero />
+      <VideoSection />
       <EventInfo />
       <Gallery />
       <ActionButtons />

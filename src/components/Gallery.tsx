@@ -10,6 +10,7 @@ export function Gallery() {
   const [isHovered, setIsHovered] = useState(false);
   const [isDragging, setIsDragging] = useState(false);
   const startX = useRef(0);
+  // Navigation state
   const scrollLeftValue = useRef(0);
   const [isVideoPlaying, setIsVideoPlaying] = useState(false);
 
@@ -17,7 +18,6 @@ export function Gallery() {
     'fot_1.jpg',
     'fot_2.jpg',
     'fot_3.jpg',
-    'fot_4.jpg',
     'fot_5.jpg',
     'fot_6.jpg',
     'fot_7.jpg',
@@ -34,23 +34,6 @@ export function Gallery() {
     url: `/imagenes/${filename}`,
     title: `Recuerdo ${i + 1}`
   }));
-
-  useEffect(() => {
-    if (isHovered) return;
-
-    const interval = setInterval(() => {
-      if (carouselRef.current) {
-        const { scrollLeft, scrollWidth, clientWidth } = carouselRef.current;
-        if (scrollLeft + clientWidth >= scrollWidth - 10) {
-          carouselRef.current.scrollTo({ left: 0, behavior: 'smooth' });
-        } else {
-          carouselRef.current.scrollBy({ left: 300, behavior: 'smooth' });
-        }
-      }
-    }, 3000);
-
-    return () => clearInterval(interval);
-  }, [isHovered]);
 
   const scrollLeftBtn = () => {
     if (carouselRef.current) {

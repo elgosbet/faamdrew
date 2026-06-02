@@ -62,7 +62,7 @@ export function Hero() {
               className="mb-2"
             >
               <img 
-                src="/imagenes/Foto001.png" 
+                src="/imagenes/fot_1.jpg" 
                 alt="Andrew" 
                 className="w-20 h-20 sm:w-24 sm:h-24 md:w-32 md:h-32 rounded-full object-cover shadow-lg border-4 border-white mx-auto" 
               />

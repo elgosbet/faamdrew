@@ -13,19 +13,19 @@ export function Gallery() {
   const scrollLeftValue = useRef(0);
 
   const photoFiles = [
-    'Foto001.png',
-    'Foto002.jpg',
-    'Foto003.jpg',
-    'Foto004.jpg',
-    'Foto005.jpg',
-    'Foto006.jpg',
-    'Foto007.jpg',
-    'Foto008.jpg',
-    'Foto009.jpg',
-    'Foto009_1.jpg',
-    'Foto010.jpg',
-    'Foto011.jpg',
-    'Foto012.jpg'
+    'fot_1.jpg',
+    'fot_2.jpg',
+    'fot_3.jpg',
+    'fot_4.jpg',
+    'fot_5.jpg',
+    'fot_6.jpg',
+    'fot_7.jpg',
+    'fot_8.jpg',
+    'fot_9.jpg',
+    'fot_10.jpg',
+    'fot_11.jpg',
+    'fot_12.jpg',
+    'fot_13.jpg'
   ];
 
   const photos = photoFiles.map((filename, i) => ({

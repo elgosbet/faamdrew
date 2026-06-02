@@ -61,7 +61,7 @@ export function FloatingActionButtons() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={() => window.open(config.confirmacionUrl, '_blank')}
-              className="pointer-events-auto bg-gradient-to-r from-[var(--color-theme-accent)] to-[var(--color-theme-accent-light)] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-[0_10px_25px_rgba(56,189,248,0.4)] flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
+              className="pointer-events-auto bg-gradient-to-r from-[var(--color-theme-accent)] to-[var(--color-theme-accent-light)] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-lg flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
               title="Confirmar Asistencia"
             >
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -73,7 +73,7 @@ export function FloatingActionButtons() {
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               onClick={addToCalendar}
-              className="pointer-events-auto bg-gradient-to-r from-[#DB4437] to-[#C1352A] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-[0_10px_25px_rgba(219,68,55,0.4)] flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
+              className="pointer-events-auto bg-[var(--color-theme-gold)] text-white p-3 md:px-5 md:py-3.5 rounded-[24px] shadow-lg flex items-center justify-center gap-2 md:gap-3 border border-white/40 group relative overflow-hidden min-h-[48px] md:h-auto"
               title="Agregar al Calendario"
             >
               <div className="absolute inset-0 bg-white/20 opacity-0 group-hover:opacity-100 transition-opacity"></div>

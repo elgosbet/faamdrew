@@ -16,7 +16,7 @@ export function ActionButtons() {
         className="group relative w-full sm:w-auto"
       >
         <div className="absolute inset-0 bg-gradient-to-r from-[var(--color-theme-accent)] to-[var(--color-theme-accent-light)] blur-xl opacity-40 group-hover:opacity-70 transition-opacity duration-300 rounded-full"></div>
-        <div className="relative bg-gradient-to-br from-[var(--color-theme-accent-light)] to-[var(--color-theme-accent)] text-white shadow-[0_10px_20px_rgba(56,189,248,0.3)] font-semibold py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-transform hover:scale-105 active:scale-95 text-[15px] border border-white/40">
+        <div className="relative bg-gradient-to-br from-[var(--color-theme-accent-light)] to-[var(--color-theme-accent)] text-white shadow-[0_10px_20px_rgba(227,142,85,0.3)] font-semibold py-4 px-8 rounded-full flex items-center justify-center gap-3 transition-transform hover:scale-105 active:scale-95 text-[15px] border border-white/40">
           <CheckCircle className="w-5 h-5" />
           <span>Confirmar Asistencia</span>
         </div>
